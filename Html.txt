@@ -1,0 +1,61 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Online Mini Game 
+Platform</title>
+<style>
+body{font-family:Arial;background:#0f172a;color:white;text-align:center;}
+h1{margin-top:20px;}
+.menu{margin-top:30px;}
+button{padding:15px 25px;margin:10px;font-size:18px;border:none;
+border-radius:10px;cursor:pointer;background:#22c55e;color:white;}
+#gameArea{margin-top:30px;}
+.grid{display:grid;grid-template-columns:repeat(3,100px);gap:10px;
+justify-content:center;}
+.box{width:100px;height:100px;background:#1e293b;display:flex;
+align-items:center;justify-content:center;font-size:20px;cursor:pointer;
+border-radius:10px;}
+</style>
+</head>
+<body>
+<h1>🎮 Mini Game Platform</h1>
+<div class="menu">
+<button onclick="startMines()">Mines</button><button 
+onclick="startChicken()">Chicken Cross</button><button 
+onclick="startPenalty()">Penalty Shoot</button>
+</div>
+<div id="gameArea"></div>
+<script>
+let mines=[]
+function startMines(){
+mines=[]
+for(let i=0;i<3;i++){mines.push(Math.floor(Math.random()*9))}
+let html='<h2>Mines Game</h2><div class="grid">'
+for(let i=0;i<9;i++){
+html+=`<div class="box" onclick="clickMine(${i},this)">?</div>`
+}
+html+='</div>'
+document.getElementById("gameArea").innerHTML=html
+}
+function clickMine(i,el){
+if(mines.includes(i)){
+el.innerHTML="💣"alert("Game Over")
+}else{
+el.innerHTML="✅"
+}
+}
+function startChicken(){
+let result=Math.random()
+if(result>0.5){
+alert("🐔 Chicken crossed road successfully!")
+}else{
+alert("🚗 Chicken got hit!")
+}
+}
+function startPenalty(){
+let player=Math.floor(Math.random()*3)let keeper=Math.floor(Math.random()*3)
+if(player==keeper){
+alert("🧤 Goalkeeper Saved")
+}else{
+alert("⚽ GOAL!")
+}
+}
+</script>
+</body></html>
